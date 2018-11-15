@@ -1,0 +1,42 @@
+{% extends "App_ToDoList/wrapper.html" %}
+{% load static %}
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class='alert alert-warning alert-dismissable' role='alert'>
+                <button class='close' data-dismiss='alert'>
+                    <small><sup>x</sup></small>
+                </button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+    {% if allTasks %}
+        <table class='table table-bordered'>
+            {% for taskElem in allTasks %}
+                {% if taskElem.completed %}
+                    <tr class='completedTask'>
+                        <td class='crossOut'><a href="{% url 'edit' taskElem.id %}" id='{{ taskElem.id }}' onclick="editTask(this.id);" title='{{ taskElem.textString }}'>{{ taskElem.textString }}</a></td>
+
+                        <td class='tdSize'><center><a href="{% url 'uncross' taskElem.id %}"><img src="{% static 'images/Tick.png' %}" alt="Tick" height='40px' width='40px'></a></center></td>
+
+                        <td class='tdSize'><center><a href="{% url 'delete' taskElem.id %}"><img src="{% static 'images/delete-sign.png' %}" alt="Delete" height='30px' width='30px' class='imgMargin'></a></center></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td class='wordBreak'><a href="{% url 'edit' taskElem.id %}" id='{{ taskElem.id }}' onclick="editTask(this.id);" title='{{ taskElem.textString }}'>{{ taskElem.textString }}</a></td>
+
+                        <td class='tdSize'><center><a href="{% url 'cross_off' taskElem.id %}"><img src="{% static 'images/Tick.png' %}" alt="Tick" height='40px' width='40px'></a></center></td>
+
+                        <td class='tdSize'><center><a href="{% url 'delete' taskElem.id %}"><img src="{% static 'images/delete-sign.png' %}" alt="Delete" height='30px' width='30px' class='imgMargin'></a></center></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}

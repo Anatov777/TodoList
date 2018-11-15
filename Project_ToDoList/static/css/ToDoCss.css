@@ -1,0 +1,22 @@
+.crossOut {
+    text-decoration: line-through;
+    width:80%;
+    word-break: break-all;
+}
+
+.wordBreak {
+    width:80%;
+    word-break: break-all;
+}
+
+.completedTask {
+    background-color: lawngreen;
+}
+
+.tdSize {
+    width: 5%;
+}
+
+.imgMargin {
+    margin-top:6px;
+}
